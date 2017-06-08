@@ -213,7 +213,7 @@ def predict_store(pred,act,rate_obj,prod_info,tdlinx,n):
     df = df.merge(prod_info[['MASTER_SKU_CD','MASTER_SKU_DSC']].drop_duplicates(),
                            how='left',left_on = 'MASTER_PKG_SKU_CD',right_on = 'MASTER_SKU_CD')
     
-    df_nonbuy = df[df['ACTUAL']==0.0].sort('PREDICT',ascending=False)
+    df_nonbuy = df[df['ACTUAL']==0.0].sort_values('PREDICT',ascending=False)
     
     scores = df_nonbuy['PREDICT'].tolist()[:n]
     prod_cd = df_nonbuy['MASTER_PKG_SKU_CD'].tolist()[:n]
